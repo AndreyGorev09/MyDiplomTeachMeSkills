@@ -10,8 +10,8 @@ class CoursesBank(models.Model):
     eur_buy = models.FloatField(verbose_name='курс покупки евро')
     eur_sale = models.FloatField(verbose_name='курс продажи евро')
     rub = models.CharField(max_length=3, verbose_name='валюта')
-    rub_buy = models.DecimalField(verbose_name='курс покупки рос.рубли', max_digits=1, decimal_places=3)
-    rub_sale = models.DecimalField(verbose_name='курс продажи рос.рубли', max_digits=1, decimal_places=3)
+    rub_buy = models.DecimalField(verbose_name='курс покупки рос.рубли', max_digits=2, decimal_places=3)
+    rub_sale = models.DecimalField(verbose_name='курс продажи рос.рубли', max_digits=2, decimal_places=3)
 
 
 class DepositBank(models.Model):
