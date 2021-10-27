@@ -1,8 +1,11 @@
+import decimal
 from decimal import Decimal
 import django.utils.timezone
 import requests
 from bs4 import BeautifulSoup
 from .models import CoursesBank, DepositBank
+
+decimal.getcontext().prec=3
 
 depo_url = 'https://bankdabrabyt.by/personal/deposite/vklad-na-maru/'
 kur_url = 'https://bankdabrabyt.by/export_courses.php'
