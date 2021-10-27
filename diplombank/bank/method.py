@@ -5,8 +5,6 @@ import requests
 from bs4 import BeautifulSoup
 from .models import CoursesBank, DepositBank
 
-decimal.getcontext().prec=3
-
 depo_url = 'https://bankdabrabyt.by/personal/deposite/vklad-na-maru/'
 kur_url = 'https://bankdabrabyt.by/export_courses.php'
 
@@ -33,8 +31,10 @@ def get_courses():
     raw_rub = currency_body.find(code='643')
     rub = raw_rub.get('iso')
     rub_buy_float = float(raw_rub.get('buy')) * 100
+    decimal.getcontext().prec=3
     rub_buy = Decimal(rub_buy_float)
     rub_sale_float = float(raw_rub.get('sale')) * 100
+    decimal.getcontext().prec = 3
     rub_sale = Decimal(rub_sale_float)
     result.append(CoursesBank(
         data=data,
