@@ -31,11 +31,9 @@ def get_courses():
     raw_rub = currency_body.find(code='643')
     rub = raw_rub.get('iso')
     rub_buy_float = float(raw_rub.get('buy')) * 100
-    decimal.getcontext().prec=3
-    rub_buy = Decimal(rub_buy_float)
+    rub_buy = Decimal(rub_buy_float).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
     rub_sale_float = float(raw_rub.get('sale')) * 100
-    decimal.getcontext().prec = 3
-    rub_sale = Decimal(rub_sale_float)
+    rub_sale = Decimal(rub_sale_float).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
     result.append(CoursesBank(
         data=data,
         usd=usd,
