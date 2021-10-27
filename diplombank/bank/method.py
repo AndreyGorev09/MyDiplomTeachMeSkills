@@ -1,3 +1,4 @@
+from decimal import Decimal
 import django.utils.timezone
 import requests
 from bs4 import BeautifulSoup
@@ -28,8 +29,8 @@ def get_courses():
     eur_sale = raw_eur.get('sale')
     raw_rub = currency_body.find(code='643')
     rub = raw_rub.get('iso')
-    rub_buy = round(float(raw_rub.get('buy')), 3) * 100
-    rub_sale = round(float(raw_rub.get('sale')), 3) * 100
+    rub_buy = Decimal(raw_rub.get('buy')) * 100
+    rub_sale = Decimal(raw_rub.get('sale')) * 100
     result.append(CoursesBank(
         data=data,
         usd=usd,
