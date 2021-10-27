@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BANK</title>
+</head>
+<body>
+<article>
+    <h1>Hello client</h1>
+     <hr>
+    {% for post in object_list %}
+<table>
+                    <tr>{{ post.data }}</tr>
+    <tr><th colspan="2">{{ post.usd }}</th></tr>
+    <tr><td>Курс покупки</td>    <td>Курс продажи</td></tr>
+    <tr><td>{{ post.usd_buy }}</td>    <td>{{ post.usd_sale }}</td></tr>
+    <tr><th colspan="2">{{ post.eur }}</th></tr>
+    <tr><td>Курс покупки</td>    <td>Курс продажи</td></tr>
+    <tr><td>{{ post.eur_buy }}</td>    <td>{{ post.eur_sale }}</td></tr>
+    <tr><th colspan="2">{{ post.rub }}</th></tr>
+    <tr><td>Курс покупки</td>    <td>Курс продажи</td></tr>
+    <tr><td>{{ post.rub_buy }}</td>    <td>{{ post.rub_sale }}</td></tr>
+  </table>
+    {% endfor %}
+</article>
+</body>
+</html>
