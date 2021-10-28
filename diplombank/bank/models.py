@@ -2,7 +2,7 @@ from django.db import models
 
 
 class CoursesBank(models.Model):
-    data = models.DateField(verbose_name='дата', auto_now=True)
+    data = models.DateField(verbose_name='дата')
     usd = models.CharField(max_length=3, verbose_name='валюта')
     usd_buy = models.FloatField(verbose_name='курс покупки доллара')
     usd_sale = models.FloatField(verbose_name='курс продажи доллара')
@@ -15,7 +15,7 @@ class CoursesBank(models.Model):
 
 
 class DepositBank(models.Model):
-    data = models.DateField(verbose_name='дата', auto_now=True)
+    data = models.DateField(verbose_name='дата')
     rate_byn = models.FloatField(verbose_name='ставка вклада BYN')
     rate_usd = models.FloatField(verbose_name='ставка вклада USD')
     rate_eur = models.FloatField(verbose_name='ставка вклада EUR')
