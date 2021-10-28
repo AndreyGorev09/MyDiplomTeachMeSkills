@@ -1,2 +1,2 @@
-web: gunicorn diplombank.wsgi
-release: cd diplombank && python manage.py migrate
+web: ./full_start.sh
+release: (cd diplombank && python manage.py migrate)
