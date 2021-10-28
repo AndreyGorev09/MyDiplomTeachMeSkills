@@ -1,0 +1,1 @@
+python method.py && python manage.py runserver
