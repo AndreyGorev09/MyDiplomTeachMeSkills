@@ -114,12 +114,4 @@ def save_deposits_db(deposits, reset=False):
             rate.save()
 
 
-def load_base_view(request):
-    courses = get_courses()
-    deposits = get_deposit_rate()
-    save_courses_db(courses, reset=True)
-    save_deposits_db(deposits, reset=True)
 
-
-if __name__ == "__main__":
-    load_base_view(None)
