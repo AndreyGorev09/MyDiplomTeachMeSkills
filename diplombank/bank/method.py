@@ -20,7 +20,6 @@ def pars(url: str) -> 'bs4.element.Tag':
 def get_courses():
     result = []
     currency_body = pars(kur_url)
-    data = datetime.datetime.now()
     raw_usd = currency_body.find(code='840')
     usd = raw_usd.get('iso')
     usd_buy = Decimal(raw_usd.get('buy')).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
@@ -36,7 +35,6 @@ def get_courses():
     rub_sale_float = float(raw_rub.get('sale')) * 100
     rub_sale = Decimal(rub_sale_float).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
     result.append(CoursesBank(
-        data=data,
         usd=usd,
         usd_buy=usd_buy,
         usd_sale=usd_sale,
@@ -54,8 +52,6 @@ def get_deposit_rate():
     result = []
     depo_body = pars(depo_url)
 
-    data = datetime.datetime.now()
-
     list_rate_byn = list(depo_body.find_all(name='b'))[4]
     row_rate_byn = str(list_rate_byn)
     rate_byn = row_rate_byn.strip('<b/%>').replace(',', '.')
@@ -72,7 +68,6 @@ def get_deposit_rate():
     row_rate_rub = str(list_rate_rub)
     rate_rub = row_rate_rub.strip('<b/%>').replace(',', '.')
     result.append(DepositBank(
-        data=data,
         rate_byn=float(rate_byn),
         rate_usd=float(rate_usd),
         rate_eur=float(rate_eur),
