@@ -84,10 +84,9 @@ def load_courses_in_db():
 
 
 def read_courses_db():
-    get_data_now = date.today()
     query = CoursesBank.objects.all()
     for e in query:
-        if e.data == get_data_now:
+        if e.data == data:
             return query
     load_courses_in_db()
 
@@ -99,10 +98,9 @@ def load_deposits_in_db():
 
 
 def read_deposits_db():
-    get_data_now = date.today()
     query = DepositBank.objects.all()
     for e in query:
-        if e.data == get_data_now:
+        if e.data == data:
             return query
     load_deposits_in_db()
 
