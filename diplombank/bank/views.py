@@ -11,8 +11,9 @@ def read_or_load_data_db(request):
     if query_courses.exists() and query_deposits.exists():
         read_courses_db()
         read_deposits_db()
-    load_courses_in_db()
-    load_deposits_in_db()
+    else:
+        load_courses_in_db()
+        load_deposits_in_db()
     return HttpResponse("")
 
 
