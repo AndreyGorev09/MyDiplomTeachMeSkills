@@ -22,5 +22,5 @@ class AllCoursesView(ListView):
     template_name = 'coursebank_list.html'
 
     def get_queryset(self):
-        date_now = date.today()
-        return super().get_queryset().filter(data=date_now)
+        data_now = date.today()
+        return super().get_queryset().filter(data=data_now)

@@ -8,7 +8,7 @@ from .models import CoursesBank, DepositBank
 
 depo_url = 'https://bankdabrabyt.by/personal/deposite/vklad-na-maru/'
 kur_url = 'https://bankdabrabyt.by/export_courses.php'
-data = date.today()
+
 # -------------------------------------- "Функция парсинга курса валют" -------------------------------------
 def pars(url: str) -> 'bs4.element.Tag':
     url_pars = requests.get(url)
@@ -20,6 +20,8 @@ def pars(url: str) -> 'bs4.element.Tag':
 def get_courses():
     result = []
     currency_body = pars(kur_url)
+    data = date.today()
+
     raw_usd = currency_body.find(code='840')
     usd = raw_usd.get('iso')
     usd_buy = Decimal(raw_usd.get('buy')).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
@@ -52,6 +54,8 @@ def get_courses():
 def get_deposit_rate():
     result = []
     depo_body = pars(depo_url)
+    data = date.today()
+
     list_rate_byn = list(depo_body.find_all(name='b'))[4]
     row_rate_byn = str(list_rate_byn)
     rate_byn = row_rate_byn.strip('<b/%>').replace(',', '.')
@@ -86,7 +90,8 @@ def load_courses_in_db():
 def read_courses_db():
     query = CoursesBank.objects.all()
     for e in query:
-        if e.data == data:
+        data_now = date.today()
+        if e.data == data_now:
             return query
     load_courses_in_db()
 
@@ -100,7 +105,8 @@ def load_deposits_in_db():
 def read_deposits_db():
     query = DepositBank.objects.all()
     for e in query:
-        if e.data == data:
+        data_now = date.today()
+        if e.data == data_now:
             return query
     load_deposits_in_db()
 
