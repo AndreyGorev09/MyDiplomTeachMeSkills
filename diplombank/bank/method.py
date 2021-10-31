@@ -1,7 +1,7 @@
 import datetime
 import decimal
 from decimal import Decimal
-import django.utils.timezone
+from datetime import date
 import requests
 from bs4 import BeautifulSoup
 from .models import CoursesBank, DepositBank
@@ -76,38 +76,32 @@ def get_deposit_rate():
     return result
 
 
-def get_existing_courses():
+def load_courses_in_db():
+    courses = get_courses()
+    for obj in courses:
+        obj.save()
+
+
+def read_courses_db():
+    get_data_now = date.today()
     query = CoursesBank.objects.all()
-    return [row.data for row in query]
+    for e in query:
+        if e.data == get_data_now:
+            return query
+    load_courses_in_db()
 
 
-def get_existing_deposits():
+def load_deposits_in_db():
+    deposits = get_deposit_rate()
+    for obj in deposits:
+        obj.save()
+
+
+def read_deposits_db():
+    get_data_now = date.today()
     query = DepositBank.objects.all()
-    return [row.data for row in query]
-
-
-def save_courses_db(courses, reset=False):
-    if not reset:
-        for course in courses:
-            if course.data in get_existing_courses():
-                continue
-            course.save()
-    else:
-        CoursesBank.objects.all().delete()
-        for course in courses:
-            course.save()
-
-
-def save_deposits_db(deposits, reset=False):
-    if not reset:
-        for rate in deposits:
-            if rate.data in get_existing_deposits():
-                continue
-            rate.save()
-    else:
-        DepositBank.objects.all().delete()
-        for rate in deposits:
-            rate.save()
-
-
+    for e in query:
+        if e.data == get_data_now:
+            return query
+    load_deposits_in_db()
 
