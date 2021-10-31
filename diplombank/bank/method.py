@@ -1,4 +1,4 @@
-import datetime
+from datetime import date
 import decimal
 from decimal import Decimal
 from datetime import date
@@ -8,7 +8,7 @@ from .models import CoursesBank, DepositBank
 
 depo_url = 'https://bankdabrabyt.by/personal/deposite/vklad-na-maru/'
 kur_url = 'https://bankdabrabyt.by/export_courses.php'
-
+data = date.today()
 # -------------------------------------- "Функция парсинга курса валют" -------------------------------------
 def pars(url: str) -> 'bs4.element.Tag':
     url_pars = requests.get(url)
@@ -35,6 +35,7 @@ def get_courses():
     rub_sale_float = float(raw_rub.get('sale')) * 100
     rub_sale = Decimal(rub_sale_float).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
     result.append(CoursesBank(
+        data=data,
         usd=usd,
         usd_buy=usd_buy,
         usd_sale=usd_sale,
@@ -51,7 +52,6 @@ def get_courses():
 def get_deposit_rate():
     result = []
     depo_body = pars(depo_url)
-
     list_rate_byn = list(depo_body.find_all(name='b'))[4]
     row_rate_byn = str(list_rate_byn)
     rate_byn = row_rate_byn.strip('<b/%>').replace(',', '.')
@@ -68,6 +68,7 @@ def get_deposit_rate():
     row_rate_rub = str(list_rate_rub)
     rate_rub = row_rate_rub.strip('<b/%>').replace(',', '.')
     result.append(DepositBank(
+        data=data,
         rate_byn=float(rate_byn),
         rate_usd=float(rate_usd),
         rate_eur=float(rate_eur),
