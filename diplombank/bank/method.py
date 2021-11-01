@@ -24,18 +24,18 @@ def get_courses():
 
     raw_usd = currency_body.find(code='840')
     usd = raw_usd.get('iso')
-    usd_buy = Decimal(raw_usd.get('buy')).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
-    usd_sale = Decimal(raw_usd.get('sale')).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
+    usd_buy = Decimal(raw_usd.get('buy')).quantize(Decimal('.01'), rounding=decimal.ROUND_HALF_DOWN)
+    usd_sale = Decimal(raw_usd.get('sale')).quantize(Decimal('.01'), rounding=decimal.ROUND_HALF_DOWN)
     raw_eur = currency_body.find(code='978')
     eur = raw_eur.get('iso')
-    eur_buy = Decimal(raw_eur.get('buy')).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
-    eur_sale = Decimal(raw_eur.get('sale')).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
+    eur_buy = Decimal(raw_eur.get('buy')).quantize(Decimal('.01'), rounding=decimal.ROUND_HALF_DOWN)
+    eur_sale = Decimal(raw_eur.get('sale')).quantize(Decimal('.01'), rounding=decimal.ROUND_HALF_DOWN)
     raw_rub = currency_body.find(code='643')
     rub = raw_rub.get('iso')
     rub_buy_float = float(raw_rub.get('buy')) * 100
-    rub_buy = Decimal(rub_buy_float).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
+    rub_buy = Decimal(rub_buy_float).quantize(Decimal('.01'), rounding=decimal.ROUND_HALF_DOWN)
     rub_sale_float = float(raw_rub.get('sale')) * 100
-    rub_sale = Decimal(rub_sale_float).quantize(Decimal('.01'), rounding=decimal.ROUND_DOWN)
+    rub_sale = Decimal(rub_sale_float).quantize(Decimal('.01'), rounding=decimal.ROUND_HALF_DOWN)
     result.append(CoursesBank(
         data=data,
         usd=usd,
