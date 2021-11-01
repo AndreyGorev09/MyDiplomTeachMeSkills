@@ -8,20 +8,25 @@
 <article>
     <h1>Hello client</h1>
      <hr>
+     <hr>
     {% for post in object_list %}
 <table>
-                    <tr>{{ post.data }}</tr>
+                    <tr>{{ post.date }}</tr>
     <tr><th colspan="2">{{ post.usd }}</th></tr>
-    <tr><td>Курс покупки</td>    <td>Курс продажи</td></tr>
-    <tr><td>{{ post.usd_buy }}</td>    <td>{{ post.usd_sale }}</td></tr>
+    <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
+    <tr><td>{{ post.usd_buy }}</td>    <td>{{ post.usd_sale }}</td>    <td>{{ post.rate_usd }}</td></tr>
     <tr><th colspan="2">{{ post.eur }}</th></tr>
-    <tr><td>Курс покупки</td>    <td>Курс продажи</td></tr>
-    <tr><td>{{ post.eur_buy }}</td>    <td>{{ post.eur_sale }}</td></tr>
+    <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
+    <tr><td>{{ post.eur_buy }}</td>    <td>{{ post.eur_sale }}</td>    <td>{{ post.rate_eur }}</td></tr>
     <tr><th colspan="2">{{ post.rub }}</th></tr>
-    <tr><td>Курс покупки</td>    <td>Курс продажи</td></tr>
-    <tr><td>{{ post.rub_buy }}</td>    <td>{{ post.rub_sale }}</td></tr>
+    <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
+    <tr><td>{{ post.rub_buy }}</td>    <td>{{ post.rub_sale }}</td>    <td>{{ post.rate_rub }}</td></tr>
+    <tr><th colspan="2">BYN</th></tr>
+    <tr><td>Ставка вклада</td>    <td>{{ post.rate_byn }}</td></tr>
   </table>
     {% endfor %}
+    <hr>
+    <hr>
 </article>
 </body>
 </html>
