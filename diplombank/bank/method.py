@@ -1,15 +1,15 @@
-from datetime import date
 import decimal
 from decimal import Decimal
 from datetime import date
 import requests
 from bs4 import BeautifulSoup
-from .models import CoursesBank, DepositBank
+from .models import CoursesDepositsBank
+
 
 depo_url = 'https://bankdabrabyt.by/personal/deposite/vklad-na-maru/'
 kur_url = 'https://bankdabrabyt.by/export_courses.php'
 
-# -------------------------------------- "Функция парсинга курса валют" -------------------------------------
+# -------------------------------------- "Функция парсинга курса валют и депозитов" ----------------------------------
 def pars(url: str) -> 'bs4.element.Tag':
     url_pars = requests.get(url)
     url_body = url_pars.content.decode()
@@ -17,10 +17,11 @@ def pars(url: str) -> 'bs4.element.Tag':
     return soup
 
 
-def get_courses():
+def get_courses_deposits():
     result = []
     currency_body = pars(kur_url)
-    data = date.today()
+    depo_body = pars(depo_url)
+    date_now = date.today()
 
     raw_usd = currency_body.find(code='840')
     usd = raw_usd.get('iso')
@@ -36,25 +37,6 @@ def get_courses():
     rub_buy = Decimal(rub_buy_float).quantize(Decimal('.001'), rounding=decimal.ROUND_HALF_DOWN)
     rub_sale_float = float(raw_rub.get('sale')) * 100
     rub_sale = Decimal(rub_sale_float).quantize(Decimal('.001'), rounding=decimal.ROUND_HALF_DOWN)
-    result.append(CoursesBank(
-        data=data,
-        usd=usd,
-        usd_buy=usd_buy,
-        usd_sale=usd_sale,
-        eur=eur,
-        eur_buy=eur_buy,
-        eur_sale=eur_sale,
-        rub=rub,
-        rub_buy=rub_buy,
-        rub_sale=rub_sale)
-    )
-    return result
-
-
-def get_deposit_rate():
-    result = []
-    depo_body = pars(depo_url)
-    data = date.today()
 
     list_rate_byn = list(depo_body.find_all(name='b'))[4]
     row_rate_byn = str(list_rate_byn)
@@ -71,42 +53,37 @@ def get_deposit_rate():
     list_rate_rub = list(depo_body.find_all(name='b'))[8]
     row_rate_rub = str(list_rate_rub)
     rate_rub = row_rate_rub.strip('<b/%>').replace(',', '.')
-    result.append(DepositBank(
-        data=data,
+    result.append(CoursesDepositsBank(
+        date=date_now,
+        usd=usd,
+        usd_buy=usd_buy,
+        usd_sale=usd_sale,
+        eur=eur,
+        eur_buy=eur_buy,
+        eur_sale=eur_sale,
+        rub=rub,
+        rub_buy=rub_buy,
+        rub_sale=rub_sale,
         rate_byn=float(rate_byn),
         rate_usd=float(rate_usd),
         rate_eur=float(rate_eur),
-        rate_rub=float(rate_rub)
-    ))
+        rate_rub=float(rate_rub))
+    )
     return result
 
 
-def load_courses_in_db():
-    courses = get_courses()
-    for obj in courses:
+def load_courses_deposits_in_db():
+    data_pars = get_courses_deposits()
+    for obj in data_pars:
         obj.save()
 
 
-def read_courses_db():
-    query = CoursesBank.objects.all()
+def read_courses_deposits_db():
+    date_now = date.today()
+    query = CoursesDepositsBank.objects.all()
     for e in query:
-        data_now = date.today()
-        if e.data == data_now:
+        if e.date == date_now:
             return query
-    load_courses_in_db()
+    load_courses_deposits_in_db()
 
-
-def load_deposits_in_db():
-    deposits = get_deposit_rate()
-    for obj in deposits:
-        obj.save()
-
-
-def read_deposits_db():
-    query = DepositBank.objects.all()
-    for e in query:
-        data_now = date.today()
-        if e.data == data_now:
-            return query
-    load_deposits_in_db()
 

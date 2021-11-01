@@ -6,5 +6,5 @@ app_name = "bank"
 
 urlpatterns = [
     path('', read_or_load_data_db),
-    path('bank/', AllCoursesView.as_view(), name='all'),
+    path('bank/', BankView.as_view(), name='all'),
 ]

@@ -3,5 +3,5 @@ from .models import *
 
 
 admin.site.register(Client)
-admin.site.register(CoursesBank)
-admin.site.register(DepositBank)
+admin.site.register(CoursesDepositsBank)
+
