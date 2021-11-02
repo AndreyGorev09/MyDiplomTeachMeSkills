@@ -5,6 +5,5 @@ from .views import *
 app_name = "bank"
 
 urlpatterns = [
-    path('', read_or_load_data_db),
-    path('bank/', BankView.as_view(), name='all'),
+    path('', BankView.as_view(), name='all'),
 ]
