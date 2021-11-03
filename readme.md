@@ -13,3 +13,118 @@ presented on the bank's website "Dabrabyt.by "._
 ![bs4](https://img.shields.io/badge/-BeautifulSoup4-090909?style=for-the-badge&logo=beautifulsoup4&logocolor=00BBBB)
 ![request](https://img.shields.io/badge/-Request-090909?style=for-the-badge&logo=request&logocolor=00BBBB)
 ![postgresql](https://img.shields.io/badge/-PostgerSQL-090909?style=for-the-badge&logo=postgresql&logocolor=00BBBB)
+
+## Create the project directory
+* mkdir directory_name
+* cd directory_name
+
+## Create and activate your virtualenv
+* virtualenv -p python3 .venv
+* ...venv/bin/activate
+
+## Installing django
+* pip install django
+
+## Create the django project
+* django-admin startproject myproject
+
+## Creating the Git repository
+* git init 
+* Create a file called `.gitignore` with the following content:
+```
+__pycache__/
+.idea
+*.sqlite3
+.env
+.venv
+```
+* git add .
+* git commit -m 'First commit'
+
+## Hidding instance configuration
+* create an .env file at the root path and insert the following variables
+- SECRET_KEY=Your$eCretKeyHere (Get this secrety key from the settings.py)
+
+### Settings.py
+* import os
+* SECRET_KEY = os.getenv("SECRET_KEY")
+* DEBUG = False
+* DATABASE_URL = os.getenv("DATABASE_URL") or "sqlite://db.sqlite3"
+
+## Configuring the Data Base (You don't need that if you already had an database).
+* pip install dj-database-url
+
+### Settings.py
+* import dj_database_url
+
+* DATABASES = {
+    "default": dj_database_url.parse(DATABASE_URL),
+}
+
+
+## Static files 
+
+### Settings.py
+* include your address at the MIDDLEWARE directives in settings.py - 'whitenoise.middleware.WhiteNoiseMiddleware'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIR = []
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+## Create a requirements.txt 
+* gunicorn
+* psycopg2-binary
+* whitenoise
+* requests
+* heroku
+* Delorean
+* beautifulsoup4
+
+## Create package versions requirements.txt
+pip freeze > requirements.txt
+
+## Create a file Procfile and add the following code
+* web: gunicorn project.wsgi
+* release: (cd myproject && python manage.py migrate)
+
+## Creating the app at Heroku
+You should install heroku CLI tools in your computer previously ( See http://bit.ly/2jCgJYW ) 
+* heroku apps:create app-name (you can create by heroku it's self if you wanted.)
+You can also login in heroku by: heroku login
+Remember to grab the address of the app in this point
+
+## Setting the allowed hosts
+* include your address at the ALLOWED_HOSTS directives in settings.py - [*]
+
+## Heroku install config plugin
+* heroku plugins:install heroku-config
+
+### Sending configs from .env to Heroku ( You have to be inside tha folther where .env files is)
+* heroku plugins:install heroku-config
+* heroku config:push -a
+
+### To show heroku configs do
+* heroku config 
+(check this, if you fail changing by code, try changing by heroku dashboard)
+
+## Publishing the app
+* git add .
+* git commit -m 'Configuring the app'
+* git push heroku master 
+
+## Creating the data base (if you are using your own data base you don't need it, if was migrated there)
+* heroku run python manage.py migrate
+
+## Creating the Django admin user
+* heroku run python manage.py createsuperuser
+
+## Extras
+
+### You may need to disable the collectstatic
+* heroku config:set DISABLE_COLLECTSTATIC=1
+* heroku config:set PYTHONPATH=myproject
+* heroku config:set SECRET_KEY=Your$eCretKeyHere
+* heroku config:set DATABASE_URL=YourDataBase
+
