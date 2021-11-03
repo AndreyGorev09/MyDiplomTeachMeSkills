@@ -108,7 +108,7 @@ Remember to grab the address of the app in this point
 
 ## Extras
 
-### You may need to disable the collectstatic
+### You may need to disable the collectstatic and install additional configurations
 * heroku config:set DISABLE_COLLECTSTATIC=1
 * heroku config:set PYTHONPATH=myproject
 * heroku config:set SECRET_KEY=Your$eCretKeyHere
