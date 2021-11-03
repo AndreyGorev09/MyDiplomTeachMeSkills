@@ -65,7 +65,7 @@ import os
 ## Static files 
 
 ### Settings.py
-* include your address at the MIDDLEWARE directives in settings.py - 'whitenoise.middleware.WhiteNoiseMiddleware'
+* include at the MIDDLEWARE in settings.py - 'whitenoise.middleware.WhiteNoiseMiddleware'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
