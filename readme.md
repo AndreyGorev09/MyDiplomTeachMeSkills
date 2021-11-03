@@ -43,7 +43,7 @@ __pycache__/
 * git commit -m 'First commit'
 
 ## Hidding instance configuration
-* create an .env file at the root path and insert the following variables
+- create an .env file at the root path and insert the following variables
 - SECRET_KEY=Your$eCretKeyHere (Get this secrety key from the settings.py)
 - DATABASE=YourDataBAse
 
