@@ -84,7 +84,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 * Delorean
 * beautifulsoup4
 
-## Create package versions requirements.txt
+## Create packages versions requirements.txt
 pip freeze > requirements.txt
 
 ## Create a file Procfile and add the following code
