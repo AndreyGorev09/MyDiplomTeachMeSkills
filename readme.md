@@ -114,7 +114,7 @@ Remember to grab the address of the app in this point
 * heroku config:set SECRET_KEY=Your$eCretKeyHere
 * heroku config:set DATABASE_URL=YourDataBase
 
-## Creating the data base (if you are using your own data base you don't need it, if was migrated there)
+## Creating the data base (if you are using your own data base you don't need it, if was migrated in the configuration)
 * heroku run python manage.py migrate
 
 ## Creating the Django admin user
