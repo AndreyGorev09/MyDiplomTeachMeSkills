@@ -15,11 +15,11 @@ presented on the bank's website "Dabrabyt.by "._
 ![postgresql](https://img.shields.io/badge/-PostgerSQL-090909?style=for-the-badge&logo=postgresql&logoColor=00BBBB)
 
 ## Create the project directory
-_you can skip_
 * mkdir directory_name
 * cd directory_name
 
 ## Create and activate your virtualenv
+_you can skip_
 * virtualenv -p python3 .venv
 * ...venv/bin/activate
 
