@@ -46,7 +46,7 @@ __pycache__/
 - SECRET_KEY=Your$eCretKeyHere (Get this secrety key from the settings.py)
 
 ### Settings.py
-* import os
+import os
 * SECRET_KEY = os.getenv("SECRET_KEY")
 * DEBUG = False
 * DATABASE_URL = os.getenv("DATABASE_URL") or "sqlite://db.sqlite3"
