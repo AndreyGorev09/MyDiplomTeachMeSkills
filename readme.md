@@ -45,6 +45,7 @@ __pycache__/
 ## Hidding instance configuration
 * create an .env file at the root path and insert the following variables
 - SECRET_KEY=Your$eCretKeyHere (Get this secrety key from the settings.py)
+- DATABASE=YourDataBAse
 
 ### Settings.py
 import os
