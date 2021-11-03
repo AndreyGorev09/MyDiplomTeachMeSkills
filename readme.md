@@ -104,12 +104,6 @@ Remember to grab the address of the app in this point
 * git commit -m 'Configuring the app'
 * git push heroku master 
 
-## Creating the data base (if you are using your own data base you don't need it, if was migrated there)
-* heroku run python manage.py migrate
-
-## Creating the Django admin user
-* heroku run python manage.py createsuperuser
-
 ## Extras
 
 ### You may need to disable the collectstatic
@@ -117,4 +111,11 @@ Remember to grab the address of the app in this point
 * heroku config:set PYTHONPATH=myproject
 * heroku config:set SECRET_KEY=Your$eCretKeyHere
 * heroku config:set DATABASE_URL=YourDataBase
+
+## Creating the data base (if you are using your own data base you don't need it, if was migrated there)
+* heroku run python manage.py migrate
+
+## Creating the Django admin user
+* heroku run python manage.py createsuperuser
+
 
