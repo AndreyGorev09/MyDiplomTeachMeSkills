@@ -96,7 +96,7 @@ You can also login in heroku by: heroku login
 Remember to grab the address of the app in this point
 
 ## Setting the allowed hosts
-* include your address at the ALLOWED_HOSTS directives in settings.py - [*]
+* include ALLOWED_HOSTS directives in settings.py - [*]
 
 ## Heroku install config plugin
 * heroku plugins:install heroku-config
