@@ -12,6 +12,8 @@
 ![bs4](https://img.shields.io/badge/-BeautifulSoup4-090909?style=for-the-badge&logo=beautifulsoup4&logoColor=00BBBB)
 ![request](https://img.shields.io/badge/-Request-090909?style=for-the-badge&logo=request&logoColor=00BBBB)
 ![postgresql](https://img.shields.io/badge/-PostgerSQL-090909?style=for-the-badge&logo=postgresql&logoColor=00BBBB)
+![sql](https://img.shields.io/badge/-SQL-090909?style=for-the-badge&logo=sql&logoColor=00BBBB)
+
 
 ## Checking whether Python and Pip are installed
 * python --version (_PIP is installed with Python by default._)
