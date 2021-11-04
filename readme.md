@@ -46,7 +46,7 @@ _For detailed instructions on installing Python, read the topic: (Download and i
 
 ## Hidding instance configuration
 * cd..
-* touch .env (file at the root path and insert the following variables)
+* touch .env (save the file in the directory 'directory_name' and insert the following variables)
 ```
 SECRET_KEY=Your$eCretKeyHere 
 DATABASE=YourDataBAse
