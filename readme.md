@@ -13,110 +13,52 @@
 ![request](https://img.shields.io/badge/-Request-090909?style=for-the-badge&logo=request&logoColor=00BBBB)
 ![postgresql](https://img.shields.io/badge/-PostgerSQL-090909?style=for-the-badge&logo=postgresql&logoColor=00BBBB)
 
+## checking whether Python and Pip are installed
+* python --version (_PIP is installed with Python by default._)
+_For detailed instructions on installing Python, read the topic: (Download and install Python https://pythonru.com/tag/skachat-i-ustanovit-python)._
+* python -m pip --version
+* python -m pip install --upgrade pip
+
+
 ## Create the project directory
 * mkdir directory_name
 * cd directory_name
 
 ## Create and activate your virtualenv
-_you can skip_
-* virtualenv -p python3 .venv
-* ...venv/bin/activate
+* virtualenv --version
+* pip install virtualenv (_if the version is not presented_)
+* virtualenv -p python .venv
+* cd .venv\Scripts
+* activate 
+* where python
+* cd ...\directory_name
 
-## Installing django
+## Installing Django
 * pip install django
+* pip freeze
 
-## Create the django project
-* django-admin startproject myproject
-
-## Creating the Git repository
-* git init 
-* Create a file called `.gitignore` with the following content:
-```
-__pycache__/
-.idea
-*.sqlite3
-.env
-.venv
-```
-* git add .
-* git commit -m 'First commit'
-
-## Hidding instance configuration
-- create an .env file at the root path and insert the following variables
-- SECRET_KEY=Your$eCretKeyHere (Get this secrety key from the settings.py)
-- DATABASE=YourDataBAse
-
-### Settings.py
-import os
-* SECRET_KEY = os.getenv("SECRET_KEY")
-* DEBUG = False
-* DATABASE_URL = os.getenv("DATABASE_URL") or "sqlite://db.sqlite3"
-
-## Configuring the Data Base (You don't need that if you already had an database).
-* pip install dj-database-url
-
-### Settings.py
-* import dj_database_url
-
-* DATABASES = {
-    "default": dj_database_url.parse(DATABASE_URL),
-}
-
-
-## Static files 
-
-### Settings.py
-* include at the MIDDLEWARE in settings.py - 'whitenoise.middleware.WhiteNoiseMiddleware'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-STATICFILES_DIR = []
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-## Create a requirements.txt 
-* gunicorn
-* psycopg2-binary
-* whitenoise
-* requests
-* heroku
-* Delorean
-* beautifulsoup4
+## Clone repository authora
+* git clone git@github.com:AndreiGorev/diplom.git
+* cd diplom
 
 ## Create packages versions requirements.txt
-pip freeze > requirements.txt
+* python -m pip install -r requirements.txt
 
-## Create a file Procfile and add the following code
-* web: gunicorn project.wsgi
-* release: (cd myproject && python manage.py migrate)
+## Hidding instance configuration
+* cd..
+* touch .env (file at the root path and insert the following variables)
+```
+SECRET_KEY=Your$eCretKeyHere 
+DATABASE=YourDataBAse
+```
+## Launching the application
+* cd diplom\diplombank
+* python manage.py migrate
+* python manage.py createsuperuser
+* python manage.py runserver
 
-## Creating the app at Heroku
-You should install heroku CLI tools in your computer previously ( See http://bit.ly/2jCgJYW ) 
-* heroku apps:create app-name (you can create by heroku it's self if you wanted.)
-You can also login in heroku by: heroku login
-Remember to grab the address of the app in this point
-
-## Setting the allowed hosts
-* include all urls at the ALLOWED_HOSTS in settings.py - [*]
 
 
-## Publishing the app
-* git add .
-* git commit -m 'Configuring the app'
-* git push heroku master 
 
-## Extras
-
-### You may need to disable the collectstatic and install additional configurations
-* heroku config:set DISABLE_COLLECTSTATIC=1
-* heroku config:set PYTHONPATH=myproject
-* heroku config:set SECRET_KEY=Your$eCretKeyHere
-* heroku config:set DATABASE_URL=YourDataBase
-
-## Creating the data base (if you are using your own data base you don't need it, if was migrated in the configuration)
-* heroku run python manage.py migrate
-
-## Creating the Django admin user
-* heroku run python manage.py createsuperuser
 
 
