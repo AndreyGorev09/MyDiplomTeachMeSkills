@@ -1,4 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.db import models
+
+
+User = get_user_model()
 
 
 class CoursesDepositsBank(models.Model):
@@ -19,8 +23,6 @@ class CoursesDepositsBank(models.Model):
 
 
 class Client(models.Model):
-    first_name = models.CharField(max_length=150, verbose_name='имя')
-    password = models.CharField(max_length=150, verbose_name='пароль')
     deposit_sum = models.IntegerField(verbose_name='сумма вклада')
     period = models.IntegerField(verbose_name='период')
-    deposit = models.ForeignKey(CoursesDepositsBank, on_delete=models.CASCADE)
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
