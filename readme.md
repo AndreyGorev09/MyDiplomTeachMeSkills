@@ -13,7 +13,7 @@
 ![request](https://img.shields.io/badge/-Request-090909?style=for-the-badge&logo=request&logoColor=00BBBB)
 ![postgresql](https://img.shields.io/badge/-PostgerSQL-090909?style=for-the-badge&logo=postgresql&logoColor=00BBBB)
 
-## checking whether Python and Pip are installed
+## Checking whether Python and Pip are installed
 * python --version (_PIP is installed with Python by default._)
 _For detailed instructions on installing Python, read the topic: (Download and install Python https://pythonru.com/tag/skachat-i-ustanovit-python)._
 * python -m pip --version
@@ -41,7 +41,7 @@ _For detailed instructions on installing Python, read the topic: (Download and i
 * git clone git@github.com:AndreiGorev/diplom.git
 * cd diplom
 
-## Create packages versions requirements.txt
+## Installing packages versions requirements.txt
 * python -m pip install -r requirements.txt
 
 ## Hidding instance configuration
