@@ -85,8 +85,7 @@ def read_courses_deposits_db():
         if e.date == date_now:
             return query
         else:
-            return None
-    load_courses_deposits_in_db()
+            return load_courses_deposits_in_db()
 
 
 def read_or_load_data_db():
