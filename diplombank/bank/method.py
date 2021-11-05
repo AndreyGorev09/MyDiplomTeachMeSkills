@@ -91,6 +91,6 @@ def read_courses_deposits_db():
 def read_or_load_data_db():
     query_courses_deposits = CoursesDepositsBank.objects.all()
     if query_courses_deposits.exists():
-        read_courses_deposits_db()
+        return read_courses_deposits_db()
     else:
-        load_courses_deposits_in_db()
+        return load_courses_deposits_in_db()
