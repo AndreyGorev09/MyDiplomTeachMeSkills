@@ -20,7 +20,7 @@
 _For detailed instructions on installing Python, read the topic: (Download and install Python https://pythonru.com/tag/skachat-i-ustanovit-python)._
 * python -m pip --version (_checking the PIP version_)
 * python -m pip install --upgrade pip (_you can update PIP if the package is installed_)
-####if PIP is not installed:
+_if PIP is not installed:_
 * python -m pip install -U pip (_install the package for Windows_)
 * pip install -U pip (_install the package for Mac, Linux, или Raspberry Pi_)
 
