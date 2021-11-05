@@ -32,7 +32,7 @@ _For detailed instructions on installing Python, read the topic: (Download and i
 
 ## Create and activate your virtualenv
 * virtualenv --version (__checking the "virtualenv" version__)
-  ####if "virtualenv" is not installed:
+#### If "virtualenv" is not installed:
 * pip install virtualenv (_install the package_)
 * virtualenv -p python .venv (_installing the package inside the directory "directory_name"_)
 * cd .venv\Scripts (_going to this directory_)
