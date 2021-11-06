@@ -11,5 +11,5 @@ class BankView(ListView):
 
     def get_queryset(self):
         date_now = date.today()
-        read_or_load_data_db()
+        read_or_load_courses_deposits_db()
         return super().get_queryset().filter(date=date_now)

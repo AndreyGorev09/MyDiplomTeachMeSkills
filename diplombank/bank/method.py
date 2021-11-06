@@ -78,19 +78,14 @@ def load_courses_deposits_in_db():
         obj.save()
 
 
-def read_courses_deposits_db():
-    date_now = date.today()
+def read_or_load_courses_deposits_db():
+    get_data_now = date.today()
     query = CoursesDepositsBank.objects.all()
     for e in query:
-        if e.date == date_now:
-            return query
-        else:
-            return load_courses_deposits_in_db()
+        if e.data == get_data_now:
+            if query.exists():
+                return query
+            else:
+                return load_courses_deposits_in_db()
 
 
-def read_or_load_data_db():
-    query_courses_deposits = CoursesDepositsBank.objects.all()
-    if query_courses_deposits.exists():
-        return read_courses_deposits_db()
-    else:
-        return load_courses_deposits_in_db()
