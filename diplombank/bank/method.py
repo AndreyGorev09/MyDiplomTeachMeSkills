@@ -89,3 +89,4 @@ def read_or_load_courses_deposits_db():
                 return load_courses_deposits_in_db()
     else:
         return load_courses_deposits_in_db()
+
