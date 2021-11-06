@@ -81,11 +81,12 @@ def load_courses_deposits_in_db():
 def read_or_load_courses_deposits_db():
     get_data_now = date.today()
     query = CoursesDepositsBank.objects.all()
-    for e in query:
-        if e.data == get_data_now:
-            if query.exists():
+    if query.exists():
+        for e in query:
+            if e.data == get_data_now:
                 return query
             else:
                 return load_courses_deposits_in_db()
-
+    else:
+        return load_courses_deposits_in_db()
 
