@@ -37,7 +37,7 @@ class CoursesDepositsBank(models.Model):
     rate_usd = models.FloatField(verbose_name='ставка вклада USD')
     rate_eur = models.FloatField(verbose_name='ставка вклада EUR')
     rate_rub = models.FloatField(verbose_name='ставка вклада RUB')
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+
 
 
 
