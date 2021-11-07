@@ -20,11 +20,11 @@ class BankView(ListView):
 class CreateBankView(LoginRequiredMixin, CreateView):
     model = Client
     fields = ['deposit_sum', 'period']
-    success_url = reverse_lazy('diplherok:all')
+    success_url = reverse_lazy('bank:all')
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        obj.client_bank = self.request.user
-        obj.save
+        obj.client = self.request.user
+        obj.save()
         return super().form_valid(form)
 
