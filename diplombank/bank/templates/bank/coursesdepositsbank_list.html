@@ -7,6 +7,14 @@
 <body>
 <article>
     <h1>Hello client</h1>
+    <p>me: "{{ user }}"</p>
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'logout' %}">LogOut()</a></p>
+    <p><a href="{% url 'bank:new' %}">Create deposit() </a></p>
+    {% else %}
+        <a href="{% url 'login' %}">Authorization()</a>
+        <a href="{% url 'signup' %}">Registration()</a>
+    {% endif %}
      <hr>
      <hr>
     {% for post in object_list %}

@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
 from dotenv import load_dotenv
 import dj_database_url
 
@@ -94,3 +96,7 @@ STATICFILES_DIR = []
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = reverse_lazy("bank:all")
+
+LOGOUT_REDIRECT_URL = reverse_lazy("bank:all")
