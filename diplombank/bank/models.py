@@ -18,7 +18,7 @@ class IntegerRangeField(models.IntegerField):
 
 class Client(models.Model, IntegerRangeField):
     deposit_sum = models.IntegerField(verbose_name='сумма вклада')
-    period = IntegerRangeField(verbose_name='период', min_value=1, max_value=360)
+    period = models.IntegerField(verbose_name='период')
     client = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
