@@ -5,6 +5,16 @@ from django.db import models
 User = get_user_model()
 
 
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value': self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
+
+
 class CoursesDepositsBank(models.Model):
     date = models.DateField(verbose_name='дата')
     usd = models.CharField(max_length=3, verbose_name='валюта')
@@ -22,7 +32,8 @@ class CoursesDepositsBank(models.Model):
     rate_rub = models.FloatField(verbose_name='ставка вклада RUB')
 
 
-class Client(models.Model):
+class Client(models.Model, IntegerRangeField):
     deposit_sum = models.IntegerField(verbose_name='сумма вклада')
-    period = models.IntegerField(verbose_name='период')
+    period = IntegerRangeField(verbose_name='период', min_value=1, max_value=360)
     client = models.ForeignKey(User, on_delete=models.CASCADE)
+
