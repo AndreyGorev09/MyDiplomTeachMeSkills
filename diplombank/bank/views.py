@@ -19,7 +19,7 @@ class BankView(ListView):
 class CreateBankView(LoginRequiredMixin, CreateView):
     model = Client
     fields = ['deposit_sum', 'period']
-    success_url = reverse_lazy('diplherok:margin')
+    success_url = reverse_lazy('bank:margin')
 
     def form_valid(self, form):
         query = Client.objects.all()
