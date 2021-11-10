@@ -9,17 +9,17 @@
     <p><a href="{% url 'diplherok:all' %}">Home page()</a></p>
   <hr>
   <hr>
-    {% for post in object_list %}
+    {% for obj in object_list %}
     <table>
-                        <tr>{{ post.data }}</tr>
+                        <tr>{{ obj.date }}</tr>
         <tr><th colspan="2">Доход по вкладу USD</th></tr>
-        <tr><td>{{ post.profit_usd }} usd</td></tr>
+        <tr><td>{{ obj.profit_usd }} usd</td></tr>
         <tr><th colspan="2">Доход по вкладу EUR</th></tr>
-        <tr><td>{{ post.profit_eur }} eur</td></tr>
+        <tr><td>{{ obj.profit_eur }} eur</td></tr>
         <tr><th colspan="2">Доход по вкладу RUB</th></tr>
-        <tr><td>{{ post.profit_rub }} rub</td></tr>
+        <tr><td>{{ obj.profit_rub }} rub</td></tr>
         <tr><th colspan="2">Доход по вкладу BYN</th></tr>
-        <tr><td>{{ post.profit_byn }} byn</td></tr>
+        <tr><td>{{ obj.profit_byn }} byn</td></tr>
     </table>
     {% endfor %}
   <hr>

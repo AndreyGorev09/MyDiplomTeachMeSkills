@@ -10,27 +10,27 @@
     <p>me: "{{ user }}"</p>
     {% if user.is_authenticated %}
     <p><a href="{% url 'logout' %}">LogOut()</a></p>
-    <p><a href="{% url 'bank:new' %}">Create deposit() </a></p>
+    <p><a href="{% url 'bank:new' %}">Сalculate income from deposits()</a></p>
     {% else %}
         <a href="{% url 'login' %}">Authorization()</a>
         <a href="{% url 'signup' %}">Registration()</a>
     {% endif %}
      <hr>
      <hr>
-    {% for post in object_list %}
+    {% for obj in object_list %}
 <table>
-                    <tr>{{ post.date }}</tr>
-    <tr><th colspan="2">{{ post.usd }}</th></tr>
+                    <tr>{{ odj.date }}</tr>
+    <tr><th colspan="2">{{ obj.usd }}</th></tr>
     <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
-    <tr><td>{{ post.usd_buy }}</td>    <td>{{ post.usd_sale }}</td>    <td>{{ post.rate_usd }}</td></tr>
-    <tr><th colspan="2">{{ post.eur }}</th></tr>
+    <tr><td>{{ obj.usd_buy }}</td>    <td>{{ obj.usd_sale }}</td>    <td>{{ obj.rate_usd }}</td></tr>
+    <tr><th colspan="2">{{ obj.eur }}</th></tr>
     <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
-    <tr><td>{{ post.eur_buy }}</td>    <td>{{ post.eur_sale }}</td>    <td>{{ post.rate_eur }}</td></tr>
-    <tr><th colspan="2">{{ post.rub }}</th></tr>
+    <tr><td>{{ obj.eur_buy }}</td>    <td>{{ obj.eur_sale }}</td>    <td>{{ obj.rate_eur }}</td></tr>
+    <tr><th colspan="2">{{ obj.rub }}</th></tr>
     <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
-    <tr><td>{{ post.rub_buy }}</td>    <td>{{ post.rub_sale }}</td>    <td>{{ post.rate_rub }}</td></tr>
+    <tr><td>{{ obj.rub_buy }}</td>    <td>{{ obj.rub_sale }}</td>    <td>{{ obj.rate_rub }}</td></tr>
     <tr><th colspan="2">BYN</th></tr>
-    <tr><td>Ставка вклада</td>    <td>{{ post.rate_byn }}</td></tr>
+    <tr><td>Ставка вклада</td>    <td>{{ obj.rate_byn }}</td></tr>
   </table>
     {% endfor %}
     <hr>
