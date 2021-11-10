@@ -3,8 +3,7 @@ from decimal import Decimal
 from datetime import date
 import requests
 from bs4 import BeautifulSoup
-from .models import CoursesDepositsBank
-
+from .models import CoursesDepositsBank, ProfitDepositsClient, Client
 
 depo_url = 'https://bankdabrabyt.by/personal/deposite/vklad-na-maru/'
 kur_url = 'https://bankdabrabyt.by/export_courses.php'
@@ -71,6 +70,8 @@ def get_courses_deposits():
     )
     return result
 
+# ------------------------- "Функции работы записи и чтения курсов валют в(из) базу(ы) данных" -----------------
+
 
 def load_courses_deposits_in_db():
     data_pars = get_courses_deposits()
@@ -89,4 +90,48 @@ def read_or_load_courses_deposits_db():
                 return load_courses_deposits_in_db()
     else:
         return load_courses_deposits_in_db()
+
+# ---------------------------------- "Функции получения дохода по вкладам" ------------------------------------
+
+
+def profit_deposits_client():
+    result = []
+    date_now = date.today()
+    courses_deposits = CoursesDepositsBank.objects.filter(data=date.today())
+    client = Client.objects.order_by("-id")
+    for obj1 in courses_deposits:
+        for obj2 in client:
+            profit_usd_float = float(((obj2.deposit_sum / obj1.usd_sale) * (obj1.rate_usd / 100)) * (obj2.period/360))
+            profit_usd = Decimal(profit_usd_float).quantize(Decimal('.001'), rounding=decimal.ROUND_HALF_DOWN)
+
+            profit_eur_float = float(((obj2.deposit_sum / obj1.eur_sale) * (obj1.rate_eur / 100)) * (obj2.period/360))
+            profit_eur = Decimal(profit_eur_float).quantize(Decimal('.001'), rounding=decimal.ROUND_HALF_DOWN)
+
+            profit_rub_float = float(((obj2.deposit_sum / obj1.rub_sale) * (obj1.rate_rub / 100)) * (obj2.period/360))
+            profit_rub = Decimal(profit_rub_float).quantize(Decimal('.001'), rounding=decimal.ROUND_HALF_DOWN)
+
+            profit_byn_float = float((obj2.deposit_sum * obj1.rate_byn / 100)*(obj2.period / 360))
+            profit_byn = Decimal(profit_byn_float).quantize(Decimal('.001'), rounding=decimal.ROUND_HALF_DOWN)
+
+            result.append(ProfitDepositsClient(
+                date=date_now,
+                profit_usd=profit_usd,
+                profit_eur=profit_eur,
+                profit_rub=profit_rub,
+                profit_byn=profit_byn,
+                client=obj2,
+                ))
+    return result
+
+# ----------------------------------------- "Функция записи расчетов прибыли в базу данных" --------------------
+
+
+def load_profit_deposits_in_db():
+    query = ProfitDepositsClient.objects.all()
+    query.delete()
+    data_profit = profit_deposits_client()
+    for obj in data_profit:
+        obj.save()
+
+# ============================================== THE END ====================================================
 

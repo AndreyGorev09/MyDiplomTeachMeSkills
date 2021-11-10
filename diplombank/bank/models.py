@@ -1,24 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 User = get_user_model()
 
 
-class IntegerRangeField(models.IntegerField):
-    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
-        self.min_value, self.max_value = min_value, max_value
-        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
-
-    def formfield(self, **kwargs):
-        defaults = {'min_value': self.min_value, 'max_value': self.max_value}
-        defaults.update(kwargs)
-        return super(IntegerRangeField, self).formfield(**defaults)
-
-
-class Client(models.Model, IntegerRangeField):
+class Client(models.Model):
     deposit_sum = models.IntegerField(verbose_name='сумма вклада')
-    period = models.IntegerField(verbose_name='период')
+    period = models.IntegerField(verbose_name='период', validators=[MinValueValidator(1), MaxValueValidator(360)])
     client = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
@@ -39,6 +28,12 @@ class CoursesDepositsBank(models.Model):
     rate_rub = models.FloatField(verbose_name='ставка вклада RUB')
 
 
-
+class ProfitDepositsClient(models.Model):
+    date = models.DateField(verbose_name='дата')
+    profit_usd = models.FloatField(verbose_name='доход по ставке вклада USD')
+    profit_eur = models.FloatField(verbose_name='доход по ставке вклада EUR')
+    profit_rub = models.FloatField(verbose_name='доход по ставке вклада RUB')
+    profit_byn = models.FloatField(verbose_name='доход по ставке вклада BYN')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
 
 

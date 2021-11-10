@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MARGIN</title>
+</head>
+<body>
+    <p><a href="{% url 'diplherok:new' %}">Сalculate income from deposits()</a></p>
+    <p><a href="{% url 'diplherok:all' %}">Home page()</a></p>
+  <hr>
+  <hr>
+    {% for post in object_list %}
+    <table>
+                        <tr>{{ post.data }}</tr>
+        <tr><th colspan="2">Доход по вкладу USD</th></tr>
+        <tr><td>{{ post.profit_usd }} usd</td></tr>
+        <tr><th colspan="2">Доход по вкладу EUR</th></tr>
+        <tr><td>{{ post.profit_eur }} eur</td></tr>
+        <tr><th colspan="2">Доход по вкладу RUB</th></tr>
+        <tr><td>{{ post.profit_rub }} rub</td></tr>
+        <tr><th colspan="2">Доход по вкладу BYN</th></tr>
+        <tr><td>{{ post.profit_byn }} byn</td></tr>
+    </table>
+    {% endfor %}
+  <hr>
+  <hr>
+</body>
+</html>
