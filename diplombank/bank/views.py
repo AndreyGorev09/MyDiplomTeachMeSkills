@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 
@@ -25,7 +26,7 @@ class CreateBankView(LoginRequiredMixin, CreateView):
         query = Client.objects.all()
         query.delete()
         obj = form.save(commit=False)
-        obj.client_bank = self.request.user
+        obj.client = self.request.user
         obj.save()
         return super().form_valid(form)
 
@@ -37,5 +38,3 @@ class ProfitView(ListView):
     def get_queryset(self):
         load_profit_deposits_in_db()
         return super().get_queryset().all()
-
-
