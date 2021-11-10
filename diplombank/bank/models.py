@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Client(models.Model):
     deposit_sum = models.IntegerField(verbose_name='сумма вклада')
-    period = models.IntegerField(verbose_name='период', validators=[MinValueValidator(1), MaxValueValidator(360)])
+    period = models.IntegerField(verbose_name='период, дн.', validators=[MinValueValidator(1), MaxValueValidator(360)])
     client = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

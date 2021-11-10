@@ -97,7 +97,7 @@ def read_or_load_courses_deposits_db():
 def profit_deposits_client():
     result = []
     date_now = date.today()
-    courses_deposits = CoursesDepositsBank.objects.filter(data=date.today())
+    courses_deposits = CoursesDepositsBank.objects.filter(date=date.today())
     client = Client.objects.order_by("-id")
     for obj1 in courses_deposits:
         for obj2 in client:
