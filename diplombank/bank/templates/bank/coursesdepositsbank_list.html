@@ -19,7 +19,7 @@
      <hr>
     {% for obj in object_list %}
 <table>
-                    <tr>{{ odj.date }}</tr>
+                    <tr>{{ obj.date }}</tr>
     <tr><th colspan="2">{{ obj.usd }}</th></tr>
     <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
     <tr><td>{{ obj.usd_buy }}</td>    <td>{{ obj.usd_sale }}</td>    <td>{{ obj.rate_usd }}</td></tr>
