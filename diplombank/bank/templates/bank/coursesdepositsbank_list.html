@@ -5,36 +5,36 @@
     <title>BANK</title>
 </head>
 <body>
-<article>
-    <h1>Hello client</h1>
-    <p>me: "{{ user }}"</p>
+    <article>
+        <h1>Hello client</h1>
+        <p>Me: "{{ user }}"</p>
     {% if user.is_authenticated %}
-    <p><a href="{% url 'logout' %}">LogOut()</a></p>
-    <p><a href="{% url 'bank:new' %}">Сalculate income from deposits()</a></p>
+        <p><a href="{% url 'logout' %}">LogOut()</a></p>
+        <p><a href="{% url 'bank:new' %}">Create deposit()</a></p>
     {% else %}
-        <a href="{% url 'login' %}">Authorization()</a>
-        <a href="{% url 'signup' %}">Registration()</a>
+        <p><a href="{% url 'login' %}">Authorization()</a></p>
+        <p><a href="{% url 'signup' %}">Registration()</a></p>
     {% endif %}
      <hr>
      <hr>
     {% for obj in object_list %}
-<table>
+        <table>
                     <tr>{{ obj.date }}</tr>
-    <tr><th colspan="2">{{ obj.usd }}</th></tr>
-    <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
-    <tr><td>{{ obj.usd_buy }}</td>    <td>{{ obj.usd_sale }}</td>    <td>{{ obj.rate_usd }}</td></tr>
-    <tr><th colspan="2">{{ obj.eur }}</th></tr>
-    <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
-    <tr><td>{{ obj.eur_buy }}</td>    <td>{{ obj.eur_sale }}</td>    <td>{{ obj.rate_eur }}</td></tr>
-    <tr><th colspan="2">{{ obj.rub }}</th></tr>
-    <tr><td>Курс покупки</td>    <td>Курс продажи</td>    <td>Ставка вклада</td></tr>
-    <tr><td>{{ obj.rub_buy }}</td>    <td>{{ obj.rub_sale }}</td>    <td>{{ obj.rate_rub }}</td></tr>
-    <tr><th colspan="2">BYN</th></tr>
-    <tr><td>Ставка вклада</td>    <td>{{ obj.rate_byn }}</td></tr>
-  </table>
+        <tr><th colspan="2">{{ obj.usd }}</th></tr>
+        <tr><td>Purchase rate</td>    <td>Selling rate</td>    <td>Deposit rate</td></tr>
+        <tr><td>{{ obj.usd_buy }}</td>    <td>{{ obj.usd_sale }}</td>    <td>{{ obj.rate_usd }}</td></tr>
+        <tr><th colspan="2">{{ obj.eur }}</th></tr>
+        <tr><td>Purchase rate</td>    <td>Selling rate</td>    <td>Deposit rate</td></tr>
+        <tr><td>{{ obj.eur_buy }}</td>    <td>{{ obj.eur_sale }}</td>    <td>{{ obj.rate_eur }}</td></tr>
+        <tr><th colspan="2">{{ obj.rub }}</th></tr>
+        <tr><td>Purchase rate</td>    <td>Selling rate</td>    <td>Deposit rate</td></tr>
+        <tr><td>{{ obj.rub_buy }}</td>    <td>{{ obj.rub_sale }}</td>    <td>{{ obj.rate_rub }}</td></tr>
+        <tr><th colspan="2">BYN</th></tr>
+        <tr><td>Deposit rate</td>    <td>{{ obj.rate_byn }}</td></tr>
+        </table>
     {% endfor %}
     <hr>
     <hr>
-</article>
+    </article>
 </body>
 </html>

@@ -119,19 +119,9 @@ def profit_deposits_client():
                 profit_eur=profit_eur,
                 profit_rub=profit_rub,
                 profit_byn=profit_byn,
-                client=obj2,
+                contributor=obj2,
                 ))
     return result
-
-# ----------------------------------------- "Функция записи расчетов прибыли в базу данных" --------------------
-
-
-def load_profit_deposits_in_db():
-    query = ProfitDepositsClient.objects.all()
-    query.delete()
-    data_profit = profit_deposits_client()
-    for obj in data_profit:
-        obj.save()
 
 # ============================================== THE END ====================================================
 

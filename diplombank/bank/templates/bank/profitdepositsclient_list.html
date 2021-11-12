@@ -5,24 +5,24 @@
     <title>MARGIN</title>
 </head>
 <body>
-    <p><a href="{% url 'bank:new' %}">Сalculate income from deposits()</a></p>
+    <p><a href="{% url 'bank:new' %}">Create new deposit()</a></p>
     <p><a href="{% url 'bank:all' %}">Home page()</a></p>
-  <hr>
-  <hr>
+    <hr>
+    <hr>
     {% for obj in object_list %}
     <table>
                         <tr>{{ obj.date }}</tr>
-        <tr><th colspan="2">Доход по вкладу USD</th></tr>
+        <tr><th colspan="2">Deposit income USD</th></tr>
         <tr><td>{{ obj.profit_usd }} usd</td></tr>
-        <tr><th colspan="2">Доход по вкладу EUR</th></tr>
+        <tr><th colspan="2">Deposit income EUR</th></tr>
         <tr><td>{{ obj.profit_eur }} eur</td></tr>
-        <tr><th colspan="2">Доход по вкладу RUB</th></tr>
+        <tr><th colspan="2">Deposit income RUB</th></tr>
         <tr><td>{{ obj.profit_rub }} rub</td></tr>
-        <tr><th colspan="2">Доход по вкладу BYN</th></tr>
+        <tr><th colspan="2">Deposit income BYN</th></tr>
         <tr><td>{{ obj.profit_byn }} byn</td></tr>
     </table>
     {% endfor %}
-  <hr>
-  <hr>
+    <hr>
+    <hr>
 </body>
 </html>

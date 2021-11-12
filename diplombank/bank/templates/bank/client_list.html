@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SINGLE</title>
+</head>
+<body>
+    {% for i in object_list %}
+    {% if i.client == user %}
+        <p><a href="{{ i.get_absolute_url }}">Сalculate income from deposits()</a></p>
+    <hr>
+    <hr>
+    <table>
+        <tr><th colspan="2">Me:{{ user }}</th></tr>
+        <tr><td>Deposit amount</td>    <td>Period in days</td>
+        <tr><td>{{ i.deposit_sum }}</td>    <td>{{ i.period }}</td>
+    </table>
+    {% endif %}
+    {% endfor %}
+</body>
+</html>
