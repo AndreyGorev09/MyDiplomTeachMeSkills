@@ -24,7 +24,7 @@ _if PIP is not installed:_
 * pip install -U pip (_install the package for Mac, Linux, или Raspberry Pi_)
 
 ## Clone repository authora
-* git clone git@github.com:AndreiGorev/diplom.git
+* git clone https://github.com/AndreiGorev/diplom.git
 * cd diplom (_let's go to this directory_)
 
 ## Installing packages versions requirements.txt
