@@ -14,7 +14,6 @@
 ![postgresql](https://img.shields.io/badge/-PostgreSQL-090909?style=for-the-badge&logo=postgresql&logoColor=00BBBB)
 ![sql](https://img.shields.io/badge/-SQL-090909?style=for-the-badge&logo=sql&logoColor=00BBBB)
 
-
 ## Checking whether Python and Pip are installed
 * python3 --version (_PIP is installed with Python by default._)
 _For detailed instructions on installing Python, read the topic: (Download and install Python https://pythonru.com/tag/skachat-i-ustanovit-python)._
@@ -28,23 +27,18 @@ _if PIP is not installed:_
 * git clone git@github.com:AndreiGorev/diplom.git
 * cd diplom (_let's go to this directory_)
 
-## Create and activate your pipenv
-* pipenv --version (__checking the "virtualenv" version__)
-* pipenv shell (_activating the virtual environment_)
-#### If "pipenv is not installed:
-* sudo apt install pipenv (_install the package_)
-
 ## Installing packages versions requirements.txt
 * python3 -m pip install -r requirements.txt (_install all the packages of their file_)
 
 ## Hidding instance configuration
-* touch .env (_save the file in directory "diplom" and insert the following variables_)
+* save the .env file in directory "diplom" and insert the following variables
 ```
 SECRET_KEY=Your$eCretKeyHere 
 DATABASE_URL=UrlYourDataBAse 
 ```
 ## Launching the application
-* cd diplombank (_let's go to this directory_)
+* cd diplombank/diplombank (_let's go to this directory, in the "settings.py" file change the DEBUG variable to True_)
+* cd .. (_venue to the directory above_)
 * python3 manage.py migrate (_creating migrations_)
 * python3 manage.py createsuperuser (_creating a superuser for the admin panel (optional)_)
 * python3 manage.py runserver (_starting a local server_)
