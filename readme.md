@@ -18,7 +18,6 @@
 * python3 --version (_PIP is installed with Python by default._)
 _For detailed instructions on installing Python, read the topic: (Download and install Python https://pythonru.com/tag/skachat-i-ustanovit-python)._
 * python3 -m pip --version (_checking the PIP version_)
-* python3 -m pip install --upgrade pip (_you can update PIP if the package is installed_)
 _if PIP is not installed:_
 * python3 -m pip install -U pip (_install the package for Windows_)
 * pip install -U pip (_install the package for Mac, Linux, или Raspberry Pi_)
@@ -31,7 +30,7 @@ _if PIP is not installed:_
 * python3 -m pip install -r requirements.txt (_install all the packages of their file_)
 
 ## Hidding instance configuration
-* save the .env file in directory "diplom" and insert the following variables
+* save the .env file in the "diplom" directory substituting your values ​​into the keys (or just save the keys with your values ​​into environment variables)
 ```
 SECRET_KEY=Your$eCretKeyHere 
 DATABASE_URL=UrlYourDataBAse 

@@ -8,5 +8,6 @@ urlpatterns = [
     path('', BankView.as_view(), name='all'),
     path('deposit/', CreateBankView.as_view(), name='new'),
     path('single/', ClientList.as_view(), name='single'),
-    path('<slag>/profit/', ProfitView.as_view(), name='margin'),
+    path('view/<slag>/profit/', ProfitView.as_view(), name='margin'),
+    path('view/', deposit_queryset, name='deposit'),
 ]

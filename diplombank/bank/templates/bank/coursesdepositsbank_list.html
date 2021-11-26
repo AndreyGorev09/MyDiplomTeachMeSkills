@@ -6,11 +6,11 @@
 </head>
 <body>
     <article>
-        <h1>Hello client</h1>
-        <p>Me: "{{ user }}"</p>
+        <h1>Hello {{ user }}</h1>
     {% if user.is_authenticated %}
         <p><a href="{% url 'logout' %}">LogOut()</a></p>
         <p><a href="{% url 'bank:new' %}">Create deposit()</a></p>
+        <p><a href="{% url 'bank:deposit' %}">View your deposit()</a></p>
     {% else %}
         <p><a href="{% url 'login' %}">Authorization()</a></p>
         <p><a href="{% url 'signup' %}">Registration()</a></p>

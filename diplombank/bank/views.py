@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 
@@ -38,6 +39,8 @@ class ProfitView(ListView):
                         for f in query_profit:
                             if f.contributor in a:
                                 return super().get_queryset().filter(contributor=i.id)
+                            else:
+                                return None
                     else:
                         obj.save()
                         return super().get_queryset().filter(contributor=i.id)
@@ -68,3 +71,21 @@ class CreateBankView(LoginRequiredMixin, CreateView):
             obj.client = self.request.user
             obj.save()
             return super().form_valid(form)
+
+
+def deposit_queryset(request):
+    query_client = Client.objects.filter(client=request.user).order_by('-id')
+    if query_client.exists():
+        for i in query_client:
+            if i.client == request.user:
+                return redirect(f'{i.client}/profit')
+            else:
+                return None
+    else:
+        return HttpResponse("Create your deposit")
+
+
+
+
+
+

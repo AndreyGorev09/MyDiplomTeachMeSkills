@@ -5,8 +5,10 @@
     <title>MARGIN</title>
 </head>
 <body>
-    <p><a href="{% url 'bank:new' %}">Create new deposit()</a></p>
+    <p>Me:{{ user }}</p>
     <p><a href="{% url 'bank:all' %}">Home page()</a></p>
+    <p><a href="{% url 'bank:single' %}">Sum deposit()</a></p>
+    <p><a href="{% url 'bank:new' %}">Create new deposit()</a></p>
     <hr>
     <hr>
     {% for obj in object_list %}

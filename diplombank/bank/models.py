@@ -13,7 +13,7 @@ class Client(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return f"/{self.client}/profit"
+        return f"/view/{self.client}/profit"
 
 
 class CoursesDepositsBank(models.Model):
@@ -31,9 +31,6 @@ class CoursesDepositsBank(models.Model):
     rate_usd = models.FloatField(verbose_name='deposit rate USD')
     rate_eur = models.FloatField(verbose_name='deposit rate EUR')
     rate_rub = models.FloatField(verbose_name='deposit rate RUB')
-
-    def get_absolute_url(self):
-        return f"/{self.pk}/"
 
 
 class ProfitDepositsClient(models.Model):
