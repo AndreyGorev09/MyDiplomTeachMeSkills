@@ -9,7 +9,7 @@
     {% if i.client == user %}
     <p>Me:{{ user }}</p>
         <p><a href="{% url 'bank:all' %}">Home page()</a></p>
-        <p><a href="{{ i.get_absolute_url }}">View your deposit()</a></p>
+        <p><a href="{{ i.get_absolute_url }}">Calculate your deposit()</a></p>
     <hr>
     <hr>
     <table>
