@@ -38,9 +38,9 @@ DATABASE_URL=UrlYourDataBAse
 ## Launching the application
 * cd diplombank/diplombank (_let's go to this directory, in the "settings.py" file change the DEBUG variable to True_)
 * cd .. (_venue to the directory above_)
-* python3 manage.py migrate (_creating migrations_)
-* python3 manage.py createsuperuser (_creating a superuser for the admin panel (optional)_)
-* python3 manage.py runserver (_starting a local server_)
+* python manage.py migrate (_creating migrations_)
+* python manage.py createsuperuser (_creating a superuser for the admin panel (optional)_)
+* python manage.py runserver (_starting a local server_)
 
 
 
